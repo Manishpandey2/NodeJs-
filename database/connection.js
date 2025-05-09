@@ -7,6 +7,7 @@ const sequelize = new Sequelize(
 db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+db.product = require("./model/productModel")(sequelize, DataTypes);
 
 sequelize
   .authenticate()
@@ -16,5 +17,9 @@ sequelize
   .catch((error) => {
     console.log("Unable to connect database");
   });
+
+sequelize.sync({ alter: false }).then(() => {
+  console.log("database sync successfully");
+});
 
 module.exports = db;
