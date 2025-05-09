@@ -13,3 +13,27 @@ exports.fetchProduct = async (req, res) => {
     productData,
   });
 };
+
+exports.addProduct = async (req, res) => {
+  const { productName, productDescription, productPrice, productCategory } =
+    req.body;
+  if (
+    !productName ||
+    !productDescription ||
+    !productPrice ||
+    !productCategory
+  ) {
+    return res.json({
+      message: "All the fields are required",
+    });
+  }
+  await product.create({
+    productName,
+    productDescription,
+    productPrice,
+    productCategory,
+  });
+  res.json({
+    message: "New Product added",
+  });
+};
