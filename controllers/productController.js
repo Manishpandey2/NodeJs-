@@ -37,3 +37,12 @@ exports.addProduct = async (req, res) => {
     message: "New Product added",
   });
 };
+
+exports.fetchSingleProduct = async (req, res) => {
+  const id = req.params.id;
+  const singleProduct = await product.findByPk(id);
+  res.json({
+    message: "Single product fetched successfully",
+    singleProduct,
+  });
+};
