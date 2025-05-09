@@ -46,3 +46,25 @@ exports.fetchSingleProduct = async (req, res) => {
     singleProduct,
   });
 };
+
+exports.updateProduct = async (req, res) => {
+  const id = req.params.id;
+  const { productName, productDescription, productPrice, productCategory } =
+    req.body;
+  await product.update(
+    {
+      productName,
+      productDescription,
+      productPrice,
+      productCategory,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+  res.json({
+    message: "Updated successfully",
+  });
+};
