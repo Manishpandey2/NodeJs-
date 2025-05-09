@@ -68,3 +68,15 @@ exports.updateProduct = async (req, res) => {
     message: "Updated successfully",
   });
 };
+
+exports.deleteProduct = async (req, res) => {
+  const id = req.params.id;
+  await product.destroy({
+    where: {
+      id,
+    },
+  });
+  res.json({
+    message: "Product romoved successfully",
+  });
+};
